@@ -94,7 +94,7 @@
   function successPhrase(ch) {
     const label = charLabel(ch);
     if (state.mode === "shapes") {
-      const art = ch === "☆" ? "a" : "o";
+      const art = SHAPE_FEMININE && SHAPE_FEMININE.has(ch) ? "a" : "o";
       return { art, label };
     }
     return { art: "o", label };
