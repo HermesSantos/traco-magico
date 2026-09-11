@@ -1,4 +1,4 @@
-const CACHE = "traco-magico-v2";
+const CACHE = "traco-magico-v3";
 const ASSETS = [
   "./",
   "./index.html",

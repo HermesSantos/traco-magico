@@ -1,6 +1,6 @@
 # Traço Mágico
 
-App infantil (PWA) para ensinar o traçado correto das letras bastão e dos números.
+App infantil (PWA) para ensinar o traçado correto das letras bastão, dos números e das formas.
 
 **Jogar online:** [https://flpgst.github.io/traco-magico/](https://flpgst.github.io/traco-magico/)
 
@@ -13,8 +13,8 @@ App infantil (PWA) para ensinar o traçado correto das letras bastão e dos núm
 
 ## Como jogar
 
-1. Escolha **Alfabeto** ou **Números**.
-2. Toque em uma letra/número.
+1. Escolha **Alfabeto**, **Números** ou **Formas**.
+2. Toque em uma letra/número/forma.
 3. Comece na **bolinha vermelha** e siga a **setinha**.
 4. Acertou o traço → brilha e avança.
 5. Errou → o app balança de leve e pede para tentar de novo.

@@ -15,7 +15,7 @@
   const PROGRESS_LOOKAHEAD = 0.42;
 
   const state = {
-    mode: "letters", // letters | numbers
+    mode: "letters", // letters | numbers | shapes
     char: "A",
     strokeIndex: 0,
     progress: 0,
@@ -82,18 +82,38 @@
   }
 
   function charsForMode() {
-    return state.mode === "letters" ? LETTERS : NUMBERS;
+    if (state.mode === "letters") return LETTERS;
+    if (state.mode === "numbers") return NUMBERS;
+    return SHAPES;
+  }
+
+  function charLabel(ch) {
+    return (SHAPE_NAMES && SHAPE_NAMES[ch]) || ch;
+  }
+
+  function successPhrase(ch) {
+    const label = charLabel(ch);
+    if (state.mode === "shapes") {
+      const art = ch === "☆" ? "a" : "o";
+      return { art, label };
+    }
+    return { art: "o", label };
   }
 
   function renderGrid() {
-    el.gridTitle.textContent = state.mode === "letters" ? "Alfabeto" : "Números";
+    const titles = { letters: "Alfabeto", numbers: "Números", shapes: "Formas" };
+    el.gridTitle.textContent = titles[state.mode] || "Escolha";
     el.starsCount.textContent = String(state.stars);
     el.charGrid.innerHTML = "";
     charsForMode().forEach((ch) => {
       const btn = document.createElement("button");
-      btn.className = "char-card" + (state.doneMap[ch] ? " done" : "");
+      btn.className =
+        "char-card" +
+        (state.mode === "shapes" ? " shape-card" : "") +
+        (state.doneMap[ch] ? " done" : "");
       btn.type = "button";
       btn.textContent = ch;
+      btn.setAttribute("aria-label", charLabel(ch));
       btn.addEventListener("click", () => {
         Sounds.tap();
         openPlay(ch);
@@ -105,7 +125,7 @@
   function openPlay(ch) {
     state.char = ch;
     resetTrace(false);
-    el.playTitle.textContent = ch;
+    el.playTitle.textContent = charLabel(ch);
     el.btnNext.hidden = true;
     showScreen("play");
     resizeCanvas();
@@ -512,9 +532,10 @@
     state.stars += earned;
     save();
     Sounds.success();
+    const { art, label } = successPhrase(state.char);
     el.successMsg.textContent = firstTime
-      ? `Você traçou o ${state.char} certinho!`
-      : `De novo! O ${state.char} ficou perfeito!`;
+      ? `Você traçou ${art} ${label} certinho!`
+      : `De novo! ${art === "a" ? "A" : "O"} ${label} ficou perfeito!`;
     el.earnedStars.textContent = "⭐".repeat(earned);
     el.overlay.hidden = false;
     el.btnNext.hidden = false;

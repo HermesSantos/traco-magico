@@ -234,6 +234,11 @@ button[hidden] {
   color: #fff;
 }
 
+.btn-shapes {
+  background: linear-gradient(180deg, #FFE08A, var(--sun));
+  color: var(--ink);
+}
+
 .btn-soft {
   background: var(--paper);
   color: var(--ink);
@@ -321,6 +326,11 @@ button[hidden] {
 }
 
 .char-card:active { transform: scale(0.94); }
+
+.char-card.shape-card {
+  font-size: clamp(1.8rem, 8vw, 2.4rem);
+  font-weight: 500;
+}
 
 .char-card.done::after {
   content: "★";
