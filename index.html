@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+  <meta name="theme-color" content="#3DB8E8" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Traço Mágico" />
+  <meta name="description" content="Aprenda o traçado correto das letras e números brincando!" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="icon" type="image/svg+xml" href="icons/icon.svg" />
+  <link rel="apple-touch-icon" href="icons/icon-192.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <title>Traço Mágico</title>
+</head>
+<body>
+  <div class="sky" aria-hidden="true">
+    <div class="cloud c1"></div>
+    <div class="cloud c2"></div>
+    <div class="cloud c3"></div>
+    <div class="sun"></div>
+  </div>
+
+  <div id="app">
+    <!-- HOME -->
+    <section id="screen-home" class="screen active">
+      <header class="brand">
+        <div class="logo-mark" aria-hidden="true">✏️</div>
+        <h1>Traço Mágico</h1>
+        <p>Aprenda a escrever letras e números do jeitinho certo!</p>
+      </header>
+
+      <div class="home-actions">
+        <button class="btn btn-primary" data-go="letters">
+          <span class="btn-icon">🔤</span>
+          <span>Alfabeto</span>
+        </button>
+        <button class="btn btn-secondary" data-go="numbers">
+          <span class="btn-icon">🔢</span>
+          <span>Números</span>
+        </button>
+        <button class="btn btn-ghost" id="btn-install" hidden>
+          <span class="btn-icon">📲</span>
+          <span>Instalar no celular</span>
+        </button>
+      </div>
+
+      <footer class="home-foot">
+        <p>Siga as setinhas com o dedo. Quando acertar, ganha estrelas! ⭐</p>
+      </footer>
+    </section>
+
+    <!-- GRID -->
+    <section id="screen-grid" class="screen">
+      <header class="topbar">
+        <button class="icon-btn" id="btn-back-home" aria-label="Voltar">←</button>
+        <h2 id="grid-title">Alfabeto</h2>
+        <div class="stars-badge" id="stars-badge" title="Estrelas">
+          <span>⭐</span><span id="stars-count">0</span>
+        </div>
+      </header>
+      <div class="char-grid" id="char-grid"></div>
+    </section>
+
+    <!-- PLAY -->
+    <section id="screen-play" class="screen">
+      <header class="topbar">
+        <button class="icon-btn" id="btn-back-grid" aria-label="Voltar">←</button>
+        <h2 id="play-title">A</h2>
+        <button class="icon-btn" id="btn-hint" aria-label="Dica">💡</button>
+      </header>
+
+      <div class="play-stage">
+        <div class="stroke-meta">
+          <span id="stroke-label">Traço 1 de 1</span>
+          <div class="progress-dots" id="progress-dots"></div>
+        </div>
+
+        <div class="canvas-wrap">
+          <canvas id="trace-canvas" width="360" height="420"></canvas>
+          <div id="feedback" class="feedback" hidden></div>
+        </div>
+
+        <div class="play-actions">
+          <button class="btn btn-soft" id="btn-retry">🔄 Tentar de novo</button>
+          <button class="btn btn-primary" id="btn-next" hidden>Próximo →</button>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Success overlay -->
+  <div id="overlay-success" class="overlay" hidden>
+    <div class="overlay-card success-card">
+      <div class="burst" aria-hidden="true"></div>
+      <div class="mascot bounce">🌟</div>
+      <h3>Parabéns!</h3>
+      <p id="success-msg">Você traçou tudo certinho!</p>
+      <div class="star-row" id="earned-stars">⭐⭐⭐</div>
+      <div class="overlay-actions">
+        <button class="btn btn-soft" id="btn-replay">De novo</button>
+        <button class="btn btn-primary" id="btn-continue">Continuar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Error toast -->
+  <div id="toast-error" class="toast" hidden>
+    <span class="toast-face">😅</span>
+    <span id="toast-text">Ops! Siga a setinha.</span>
+  </div>
+
+  <script src="strokes.js"></script>
+  <script src="sounds.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
