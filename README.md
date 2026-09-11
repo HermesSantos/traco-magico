@@ -2,7 +2,7 @@
 
 App infantil (PWA) para ensinar o traçado correto das letras bastão, dos números e das formas.
 
-**Jogar online:** [https://flpgst.github.io/traco-magico/](https://flpgst.github.io/traco-magico/)
+**Jogar online:** [https://hermessantos.github.io/traco-magico/](https://hermessantos.github.io/traco-magico/)
 
 ## Como usar no celular
 
